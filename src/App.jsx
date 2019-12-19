@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class App extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <TaskCreator newTask={this.createNewTask.bind(this)}/>
-            <TaskViewer />
+            <TaskView currentState={this.state}/>
           </div>
         </div>
       </div>
@@ -79,63 +80,124 @@ class TaskCreator extends Component {
   }
 }
 
-class TaskViewer extends Component {
-
-  render() {
-    return(
-      <div className='container-fluid col-lg-8'>
-        <div className='panel panel-default'>
-          <div className='panel-heading'>View To Dos</div>
-            <TaskListItem />
-        </div>
-      </div>
-    );
-  }
+function TaskView(props) {
+  const taskCount = Object.keys(props.currentState).length;
+  if (taskCount > 0 ) {
+    return <TaskListItem currentState={props.currentState}/>;
+  } 
+  return <CreateNewTaskMessage />;
 }
+
+// class TaskViewer extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   render() {
+//     console.log(this.props.currentState);
+//     return(
+//       <div className='container-fluid col-lg-8'>
+//         <div className='panel panel-default'>
+//           <div className='panel-heading'>View To Dos</div>
+//             <CreateNewTaskMessage /> 
+//         </div>
+//       </div>
+//     );
+//   };
+// }
 
 function CreateNewTaskMessage() {
   return(
-        <div>
-          <ul className='list-group'>
-            <li className='list-group-item list-group-item-info'>
-              <p><b>Welcome to the Very Simple To Do App</b></p>
-              <p>Get started now by adding a new to do item to the left.</p>
-            </li>
-          </ul>
-        </div>
+    <div className='container-fluid col-lg-8'>
+      <div className='panel panel-default'>
+      <div className='panel-heading'>View To Dos</div>
+        <ul className='list-group'>
+          <li className='list-group-item list-group-item-info'>
+            <p><b>Welcome to the Very Simple To Do App</b></p>
+            <p>Get started now by adding a new to do item to the left.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 
 function TaskListItem(props) {
+  console.log(props.currentState, 'array check')
+  console.log(Object.keys(props.currentState), 'testing inside of TaskListItem');
   return(
-    <div>
-      <ul className='list-group'>
-        <li className='list-group-item list-group-item-success'>
-          <div className='container'>
-            <div className='row'>
-              <div className='container-fluid col-lg-2'>
-                <input type='checkbox'/>
-              </div>
-              <div className='container-fluid col-lg-4'>
-                <p> test text</p>
-              </div>
-              <div className='container-fluid col-lg-2 btn-group'>
-                <button type='button' className='btn btn-default btn-sm'>
-                  <a className='glyphicon glyphicon-trash delete-todo'></a> 
-                </button>
-                <button type='button' className='btn btn-default btn-sm'>
-                  <a className='glyphicon glyphicon-edit edit-todo'></a>
-                </button>
+    <div className='container-fluid col-lg-8'>
+      <div className='panel panel-default'>
+      <div className='panel-heading'>View To Dos</div>
+        <ul className='list-group'>
+          <li className='list-group-item list-group-item-success'>
+            <div className='container'>
+              <div className='row'>
+                <div className='container-fluid col-lg-2'>
+                  <input type='checkbox'/>
+                </div>
+                <div className='container-fluid col-lg-4'>
+                  <p> test text</p>
+                </div>
+                <div className='container-fluid col-lg-2 btn-group'>
+                  <button type='button' className='btn btn-default btn-sm'>
+                    <a className='glyphicon glyphicon-trash delete-todo'></a> 
+                  </button>
+                  <button type='button' className='btn btn-default btn-sm'>
+                    <a className='glyphicon glyphicon-edit edit-todo'></a>
+                  </button>
+                </div>
+
+                {/* {
+                  this.props.currentState.map(function(item, i){
+                    console.log(item);
+                    return <p key={i}>Test</p>
+                  })
+                } */}
+                {/* {
+                  
+        this.props.currentState.map(text => (
+          <IndividualTask
+            key={i}
+            text={item}
+            taskPriority={tasks.description}
+            location={tasks.location} 
+          />
+        ))
+                  } */}
               </div>
             </div>
-          </div>
-        </li>
-        <li className='list-group-item list-group-item-warning'>warning</li>
-        <li className='list-group-item list-group-item-danger'>danger</li>
-      </ul>
+          </li>
+          <li className='list-group-item list-group-item-warning'>warning</li>
+          <li className='list-group-item list-group-item-danger'>danger</li>
+        </ul>
+      </div>
     </div>
-  );
+  ); 
 }
+
+// function IndividualTask(props) {
+//   console.log(props.text)
+//   return(
+//     <div>
+//       <div className='container-fluid col-lg-2'>
+//         <input type='checkbox'/>
+//       </div>
+//       <div className='container-fluid col-lg-4'>
+//         <p> props.</p>
+//       </div>
+//       <div className='container-fluid col-lg-2 btn-group'>
+//         <button type='button' className='btn btn-default btn-sm'>
+//           <a className='glyphicon glyphicon-trash delete-todo'></a> 
+//         </button>
+//         <button type='button' className='btn btn-default btn-sm'>
+//           <a className='glyphicon glyphicon-edit edit-todo'></a>
+//         </button>
+//       </div>
+//     </div>
+
+// 	);
+// }
 
 function TaskEditWindow(props) {
   return(
@@ -159,7 +221,5 @@ function TaskEditWindow(props) {
     </div>
     );
   }
-
-  const tasks = {};
 
 export default App;
