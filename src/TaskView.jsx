@@ -1,8 +1,9 @@
 import React from 'react';
-import TaskListItem from './TaskListItem'
+import TaskListItem from './TaskListItem';
 
 function TaskView(props) {
     const taskCount = Object.keys(props.currentState).length;
+    console.log(props.currentState, 'prop check inside TaskView')
     if (taskCount > 0 ) {
       return <TaskListItem currentState={props.currentState}/>;
     } 
@@ -18,7 +19,7 @@ function TaskView(props) {
                 </ul>
             </div>
         </div>
-    )
+    );
   }
 
-export default TaskView
+export default TaskView;

@@ -1,57 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
+import IndividualTask from './IndividualTask';
 
-function TaskListItem(props) {
-    console.log(props.currentState, 'array check')
-    console.log(Object.keys(props.currentState), 'testing inside of TaskListItem');
-    return(
-      <div className='container-fluid col-lg-8'>
-        <div className='panel panel-default'>
-        <div className='panel-heading'>View To Dos</div>
-          <ul className='list-group'>
-            <li className='list-group-item list-group-item-success'>
-              <div className='container'>
-                <div className='row'>
-                  <div className='container-fluid col-lg-2'>
-                    <input type='checkbox'/>
-                  </div>
-                  <div className='container-fluid col-lg-4'>
-                    <p> test text</p>
-                  </div>
-                  <div className='container-fluid col-lg-2 btn-group'>
-                    <button type='button' className='btn btn-default btn-sm'>
-                      <a className='glyphicon glyphicon-trash delete-todo'></a> 
-                    </button>
-                    <button type='button' className='btn btn-default btn-sm'>
-                      <a className='glyphicon glyphicon-edit edit-todo'></a>
-                    </button>
-                  </div>
-  
-                  {/* {
-                    this.props.currentState.map(function(item, i){
-                      console.log(item);
-                      return <p key={i}>Test</p>
-                    })
-                  } */}
-                  {/* {
-                    
-          this.props.currentState.map(text => (
-            <IndividualTask
-              key={i}
-              text={item}
-              taskPriority={tasks.description}
-              location={tasks.location} 
-            />
-          ))
-                    } */}
-                </div>
+
+class TaskListItem extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+    
+    render(){
+        console.log(Object.values(this.props.currentState), 'testing inside of TaskListItem values');
+        console.log(Object.keys(this.props.currentState).length, 'testing for length of object')
+        // console.log(this.props.currentState, 'object check');
+        console.log(Object.keys(this.props.currentState), 'testing inside of TaskListItem keys');
+        const taskText = Object.keys(this.props.currentState);
+        const taskProperties = Object.values(this.props.currentState);
+        return (
+            <div className='container-fluid col-lg-8'>
+              <div className='panel panel-default'>
+              <div className='panel-heading'>View To Dos</div>
+                <ul className='list-group'>
+                    {
+                        taskText.map(text => (
+                        <IndividualTask
+                        key={text.id}
+                        text={text}
+                        />   
+                        ))
+                    }
+                  <li className='list-group-item list-group-item-warning'>warning</li>
+                  <li className='list-group-item list-group-item-warning'>warning</li>
+                  <li className='list-group-item list-group-item-danger'>danger</li>
+                </ul>
               </div>
-            </li>
-            <li className='list-group-item list-group-item-warning'>warning</li>
-            <li className='list-group-item list-group-item-danger'>danger</li>
-          </ul>
-        </div>
-      </div>
-    ); 
-  }
+            </div>
+          ); 
+    };
+}
 
-export default TaskListItem
+export default TaskListItem;
+
+
+
