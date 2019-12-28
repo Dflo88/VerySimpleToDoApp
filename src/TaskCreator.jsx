@@ -14,9 +14,8 @@ class TaskCreator extends React.Component {
       // The taskProperty variable will be used to set the task priority ([0] position) and current
       // state of the view window in the task editior ([1] postion). By default the property will
       // be created with a view window value of "0". 
-      const taskProperty = [taskPriority,0];
       if (taskKey.length > 0) {
-        this.props.newTask(taskKey, taskProperty);
+        this.props.newTask(taskKey, taskPriority);
       } else {
         alert('Please enter some text to create this task!')
       };

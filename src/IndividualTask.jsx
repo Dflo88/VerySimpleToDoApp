@@ -1,10 +1,22 @@
 import React from 'react';
 
 function IndividualTask(props) {
-      console.log(props, 'text inside of individual tasks')
+    var priority ;
+    switch (Number(props.priority)) {
+        case 1:
+            priority = "list-group-item list-group-item-danger";
+            break;
+        case 2:
+            priority = "list-group-item list-group-item-warning";
+            break;
+        case 3:
+            priority = "list-group-item list-group-item-success";
+            break;
+    }
+      
       return(
         <div>
-            <li className='list-group-item list-group-item-success'>
+            <li className={priority}>
                 <div className='container'>
                     {/* <div className='row'> */}
                         <div className='container-fluid col-lg-2'>
@@ -25,7 +37,6 @@ function IndividualTask(props) {
                 </div>
             </li>
         </div>
-    
     	);
     }
 
