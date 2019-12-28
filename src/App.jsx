@@ -12,10 +12,10 @@ class App extends Component {
   }
 
   createNewTask(task,priority){
-    this.setState({[task]: priority});
-    console.log(Object.keys(this.state).length, 'state length');
-    console.log(this.state, 'current state')
+    const taskKey = Math.floor(Math.random() * 100000)
+    this.setState({[taskKey]: [task,priority,0,taskKey]});
   }
+  
   render() {
     return (
       <div className='container'>

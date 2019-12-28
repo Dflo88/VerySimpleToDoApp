@@ -5,15 +5,11 @@ import IndividualTask from './IndividualTask';
 class TaskListItem extends Component {
     constructor(props) {
         super(props);
-
     }
-    
+
     render(){
-        console.log(Object.values(this.props.currentState), 'testing inside of TaskListItem values');
-        console.log(Object.keys(this.props.currentState).length, 'testing for length of object')
-        // console.log(this.props.currentState, 'object check');
-        console.log(Object.keys(this.props.currentState), 'testing inside of TaskListItem keys');
-        const taskText = Object.keys(this.props.currentState);
+ 
+        const taskValue = Object.values(this.props.currentState);
         const taskProperties = Object.values(this.props.currentState);
         return (
             <div className='container-fluid col-lg-8'>
@@ -21,16 +17,14 @@ class TaskListItem extends Component {
               <div className='panel-heading'>View To Dos</div>
                 <ul className='list-group'>
                     {
-                        taskText.map(text => (
+                        taskValue.map(task => (
                         <IndividualTask
-                        key={text.id}
-                        text={text}
+                        key={task[3]}
+                        text={task[0]}
+                        priority={task[1]}
                         />   
                         ))
                     }
-                  <li className='list-group-item list-group-item-warning'>warning</li>
-                  <li className='list-group-item list-group-item-warning'>warning</li>
-                  <li className='list-group-item list-group-item-danger'>danger</li>
                 </ul>
               </div>
             </div>

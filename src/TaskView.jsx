@@ -3,7 +3,6 @@ import TaskListItem from './TaskListItem';
 
 function TaskView(props) {
     const taskCount = Object.keys(props.currentState).length;
-    console.log(props.currentState, 'prop check inside TaskView')
     if (taskCount > 0 ) {
       return <TaskListItem currentState={props.currentState}/>;
     } 
