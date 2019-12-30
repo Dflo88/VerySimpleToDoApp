@@ -21,8 +21,8 @@ class TaskCreator extends React.Component {
       };
       document.getElementById('setTaskText').value = '';
       document.getElementById('setTaskPriority').value = 1;
-  
     }
+
     render() {
       return (
         <div className='container-fluid col-lg-4'>
