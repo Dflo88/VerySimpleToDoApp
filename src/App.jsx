@@ -2,20 +2,26 @@ import React, { Component } from 'react';
 import TaskCreator from './TaskCreator';
 import TaskView from './TaskView';
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);
      
     this.state = {}
+
   }
 
   createNewTask(task,priority){
     const taskKey = Math.floor(Math.random() * 100000)
     this.setState({[taskKey]: [task,priority,0,taskKey]});
   }
-  
+
+  deleteTask(taskId){
+    let newState = Object.assign({}, this.state);
+    delete newState[taskId];
+    // this.setState({'testing': [1,1,1,1]});
+   
+  }
+
   render() {
     return (
       <div className='container'>
@@ -24,7 +30,7 @@ class App extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <TaskCreator newTask={this.createNewTask.bind(this)}/>
-            <TaskView currentState={this.state}/>
+            <TaskView currentState={this.state} deleteId={this.deleteTask.bind(this)}/>
           </div>
         </div>
       </div>

@@ -6,9 +6,11 @@ class TaskListItem extends Component {
     constructor(props) {
         super(props);
     }
+    deleteId(taskId){
+        this.props.deleteId(taskId);
+    }
 
     render(){
- 
         const taskValue = Object.values(this.props.currentState);
         const taskProperties = Object.values(this.props.currentState);
         return (
@@ -18,10 +20,12 @@ class TaskListItem extends Component {
                 <ul className='list-group'>
                     {
                         taskValue.map(task => (
-                        <IndividualTask
+                        <IndividualTask deleteId={this.deleteId.bind(this)}
                         key={task[3]}
                         text={task[0]}
                         priority={task[1]}
+                        editWindow={task[2]}
+                        taskKey={task[3]}
                         />   
                         ))
                     }
