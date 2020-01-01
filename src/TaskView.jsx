@@ -5,14 +5,17 @@ class TaskView extends Component {
     constructor(props) {
         super(props);
     }
-    deleteId(taskId){
-        this.props.deleteId(taskId);
-    }   
+    // deleteId(taskId){
+    //     this.props.deleteId(taskId);
+    // }   
+    clickHandler(event){
+        this.props.clickHandler(event);
+    }
 
     render(){
-        const taskCount = Object.keys(this.props.currentState).length;
+        const taskCount = Object.values(this.props.currentState.todos).length;
         if (taskCount > 0 ) {
-        return <TaskListItem currentState={this.props.currentState} deleteId={this.deleteId.bind(this)}/>;
+        return <TaskListItem currentState={this.props.currentState} clickHandler={this.clickHandler.bind(this)}/>;
         } 
         return (
             <div className='container-fluid col-lg-8'>
