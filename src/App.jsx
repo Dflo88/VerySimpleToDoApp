@@ -6,20 +6,36 @@ class App extends Component {
   constructor(props) {
     super(props);
      
-    this.state = {}
-
+    this.state = {
+      'todos' : []
+    }
   }
 
   createNewTask(task,priority){
-    const taskKey = Math.floor(Math.random() * 100000)
-    this.setState({[taskKey]: [task,priority,0,taskKey]});
+    const newTaskObject = {[task] : [priority,false]}
+    const newStateValue = Object.assign({}, this.state.todos, newTaskObject);
+    this.setState({'todos': newStateValue});
   }
 
-  deleteTask(taskId){
-    let newState = Object.assign({}, this.state);
-    delete newState[taskId];
-    // this.setState({'testing': [1,1,1,1]});
-   
+  // deleteTask(taskId){
+  //   let updatedState = Object.assign({}, this.state['todos']);
+  //   delete updatedState[taskId];
+  //   this.setState({'todos' : updatedState});
+  // }
+
+  clickHandler(event){
+
+    console.log(event.target.name, 'name');
+    // console.log(event.target.id, 'event id');
+    if (event.target.name == 'delete'){
+      let updatedState = Object.assign({}, this.state['todos']);
+      delete updatedState[event.target.id];
+      this.setState({'todos' : updatedState});
+    } else if (event.target.name == 'editWindow'){
+      console.log('edit window logic working')
+    } else {
+      console.log('not working!!!')
+    }
   }
 
   render() {
@@ -30,7 +46,7 @@ class App extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <TaskCreator newTask={this.createNewTask.bind(this)}/>
-            <TaskView currentState={this.state} deleteId={this.deleteTask.bind(this)}/>
+            <TaskView currentState={this.state} clickHandler={this.clickHandler.bind(this)}/>
           </div>
         </div>
       </div>

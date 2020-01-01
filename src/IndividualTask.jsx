@@ -4,9 +4,12 @@ class IndividualTask extends Component {
     constructor(props) {
         super(props);
     }
-    deleteTask(){
-        this.props.deleteId(this.props.taskKey);
-        }
+    // deleteTask(){
+    //     this.props.deleteId(this.props.text);
+    //     }
+    clickHandler(event){
+        this.props.clickHandler(event);
+    }
     render(){
         var priority ;
     switch (Number(this.props.priority)) {
@@ -32,12 +35,8 @@ class IndividualTask extends Component {
                             <p>{this.props.text}</p>
                         </div>
                         <div className='container-fluid col-lg-2 btn-group'>
-                            <button type='button' className='btn btn-default btn-sm' onClick={this.deleteTask.bind(this)}>
-                            <a className='glyphicon glyphicon-trash delete-todo'></a> 
-                            </button>
-                            <button type='button' className='btn btn-default btn-sm'>
-                            <a className='glyphicon glyphicon-edit edit-todo'></a>
-                            </button>
+                            <button type='button' className='btn btn-default btn-sm glyphicon glyphicon-trash delete-todo' name='delete' id={this.props.text} onClick={this.clickHandler.bind(this)}></button>
+                            <button type='button' className='btn btn-default btn-sm glyphicon glyphicon-edit edit-todo'></button>
                         </div>
                     {/* </div> */}
                 </div>
