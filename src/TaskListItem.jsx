@@ -6,9 +6,7 @@ class TaskListItem extends Component {
     constructor(props) {
         super(props);
     }
-    // deleteId(taskId){
-    //     this.props.deleteId(taskId);
-    // }
+
     clickHandler(event){
         this.props.clickHandler(event);
     }
@@ -19,7 +17,7 @@ class TaskListItem extends Component {
         return (
             <div className='container-fluid col-lg-8'>
               <div className='panel panel-default'>
-              <div className='panel-heading'>View To Dos</div>
+                <div className='panel-heading'>View To Dos</div>
                 <ul className='list-group'>
                     {
                         taskText.map(task => (
@@ -32,9 +30,9 @@ class TaskListItem extends Component {
                         ))
                     }
                 </ul>
-              </div>
+                </div>
             </div>
-          ); 
+        ); 
     };
 }
 
