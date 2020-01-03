@@ -10,11 +10,11 @@ class IndividualTask extends Component {
     clickHandler(event){
         this.props.clickHandler(event);
     }
-    
+
     render(){
         if (this.props.editWindow){
             return (
-                <TaskExpandedView text={this.props.text} priority={this.props.priority}/>
+                <TaskExpandedView text={this.props.text} priority={this.props.priority} clickHandler={this.clickHandler.bind(this)}/>
             )
         } else {
             return (

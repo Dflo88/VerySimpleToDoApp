@@ -40,6 +40,22 @@ class App extends Component {
             this.setState({'todos' : updatedState});
             break;
         }
+    } else if (event.target.name == 'saveButton'){
+        const taskTextEdit = document.getElementById('editTaskText').value;
+        const taskPriorityEdit = document.getElementById('editTaskPriority').value;
+        let updatedState = Object.assign({}, this.state['todos']);
+        
+        if (event.target.id == taskTextEdit){
+          updatedState[event.target.id] = [taskPriorityEdit, false];
+          this.setState({'todos' : updatedState});
+
+        } else {
+          delete updatedState[event.target.id];
+          updatedState[taskTextEdit] = [taskPriorityEdit, false];
+          this.setState({'todos' : updatedState});
+        }
+
+
     } else {
       console.log('not working!!!')
     }

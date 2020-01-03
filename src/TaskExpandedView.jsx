@@ -38,7 +38,7 @@ class TaskExpandedView extends Component {
                             <option value='2'>Medium Priority</option>
                             <option value='3'>Low Priority</option>
                         </select><br/>
-                        <button type='button' className='btn btn-success btn-sm update-todo'>Save</button>
+                        <button type='button' className='btn btn-success btn-sm update-todo' name='saveButton' id={this.props.text} onClick={this.clickHandler.bind(this)}>Save</button>
                         </div>
                     </li>
                 </ul>
