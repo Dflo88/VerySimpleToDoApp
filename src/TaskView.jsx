@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import TaskListItem from './TaskListItem';
 
+// This componenet controls the task viewing window on the right side of the the browser.
+// If there are no task to display, the user will see a welcome message. Once a task is 
+// entered to the system, then the display will render the TaskListItem.
+
 class TaskView extends Component {
     constructor(props) {
         super(props);
-    }
+    };
 
     clickHandler(event){
         this.props.clickHandler(event);
-    }
+    };
 
     render(){
-        const taskCount = Object.values(this.props.currentState.todos).length;
-        if (taskCount > 0 ) {
+        if (Object.values(this.props.currentState.todos).length > 0 ) {
         return <TaskListItem currentState={this.props.currentState} clickHandler={this.clickHandler.bind(this)}/>;
         } 
         return (
@@ -30,5 +33,4 @@ class TaskView extends Component {
         );
     }
 }
-
 export default TaskView;

@@ -4,18 +4,19 @@ class TaskCreator extends React.Component {
     constructor(props) {
       super(props);
     }
-    // the onClickHandler function will be creating a new task using the user input data
-    // and storing the task in the App component state. Each task will exist as key:value 
-    //pair in the state. The key will be equal to the task text and the value property is 
-    // described above the taskProperty variable below.
+    // the onClickHandler will send the user input data to the App component via
+    // props when the 'add' button is clicked. The data will then be used in the
+    // App component to add the new task to state.
     onClickHandler(){
-      const taskKey = document.getElementById('setTaskText').value;
+      const taskText = document.getElementById('setTaskText').value;
       const taskPriority = document.getElementById('setTaskPriority').value;
       // The taskProperty variable will be used to set the task priority ([0] position) and current
       // state of the view window in the task editior ([1] postion). By default the property will
-      // be created with a view window value of "0". 
-      if (taskKey.length > 0) {
-        this.props.newTask(taskKey, taskPriority);
+      // be created with a view window value of false. 
+      if (Object.keys(this.props.currentState.todos).includes(taskText)){ 
+        alert('It seems you already entered this task! Please enter a new task')
+      } else if (taskText.length > 0) {
+        this.props.newTask(taskText, taskPriority);
       } else {
         alert('Please enter some text to create this task!')
       };
@@ -35,20 +36,19 @@ class TaskCreator extends React.Component {
                 <br/>
                 <label>How much of a priority is this?</label>
                 <select id='setTaskPriority' className='selectpicker form-control create-todo-priority'>
-                  <option value='1'>High Priority</option>
+                  <option value='1'>Low Priority</option>
                   <option value='2'>Medium Priority</option>
-                  <option value='3'>Low Priority</option>
+                  <option value='3'>High Priority</option>
                 </select>
               </div>
             </div>
             <div className='panel-footer'>
-              <button type='button' className='btn btn-success btn-block' onClick={this.onClickHandler.bind(this)}>Add</button>
+              <button type='button' className='btn btn-success btn-block create-todo' onClick={this.onClickHandler.bind(this)}>Add</button>
             </div>
           </div>
         </div>
       );
     }
   }
-
   export default TaskCreator
 

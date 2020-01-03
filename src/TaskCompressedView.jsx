@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
+
+// This component renders a compressed view of a task. It contains logic
+// to assign a priority class that will affect the color of the task depending
+// on the priority assigned.It also contains a clickHandler function that will
+// send a button name and button id (which is set to the task text) prop back to 
+// App component where a function will determine what to do with the information.
+
  
 class TaskCompressedView extends Component {
     constructor(props){
         super(props);
-    }
+    };
 
     clickHandler(event){
         this.props.clickHandler(event);
-    }
+    };
 
     render(){
         let taskPriorityClass ;
-
         switch (Number(this.props.priority)) {
             case 1:
-                taskPriorityClass = 'list-group-item list-group-item-danger';
+                taskPriorityClass = 'list-group-item list-group-item-success';
                 break;
             case 2:
                 taskPriorityClass = 'list-group-item list-group-item-warning';
                 break;
             case 3:
-                taskPriorityClass = 'list-group-item list-group-item-success';
+                taskPriorityClass = 'list-group-item list-group-item-danger';
                 break;
             default:
                 break;
-        }
-
+        };
         return(
             <div>
                 <li className={taskPriorityClass}>
@@ -44,7 +49,6 @@ class TaskCompressedView extends Component {
                 </li>
             </div>    
         );
-    }
-
+    };
 }
 export default TaskCompressedView
